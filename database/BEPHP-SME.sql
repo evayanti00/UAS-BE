@@ -41,11 +41,16 @@ CREATE TABLE `pendaftaran` (
 );
 
 ALTER TABLE `event` ADD FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
-
 ALTER TABLE `pendaftaran` ADD FOREIGN KEY (`nik_nim`) REFERENCES `peserta` (`nik_nim`);
-
 ALTER TABLE `pendaftaran` ADD FOREIGN KEY (`id_event`) REFERENCES `event` (`id_event`);
 
+INSERT INTO `users` (`username`, `password`, `nama_organisasi`, `role`, `aktif`) VALUES (
+  'admin',
+  '$2y$10$BdibPW7ujv29LJXfkbCUYO9.fsEpz7kviLTN3YsDGlp3OYscB9/W2', -- password_hash("admin_sme_3q0g", PASSWORD_DEFAULT);
+  'Administrator Sistem',
+  'administrator',
+  1
+);
 
 /*
 Table users {
