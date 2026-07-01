@@ -36,7 +36,7 @@
                 <div class="card-body p-4">
 
                     <div class="text-center mb-4">
-                        <h2 class="brand-title">Event Management System</h2>
+                        <h2 class="brand-title">SME</h2>
                         <p class="text-muted">
                             Registrasi Penyelenggara Event
                         </p>
@@ -52,7 +52,7 @@
                                 type="text"
                                 name="nama_organisasi"
                                 class="form-control"
-                                placeholder="Contoh: HMTI"
+                                placeholder="Contoh: RADE"
                                 required>
                         </div>
 

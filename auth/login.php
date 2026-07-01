@@ -37,11 +37,11 @@
 
                     <div class="text-center mb-4">
                         <h2 class="brand-title">
-                            Event Management System
+                            SME
                         </h2>
 
                         <p class="text-muted">
-                            Login Penyelenggara
+                            Login Penyelenggara Event
                         </p>
                     </div>
 

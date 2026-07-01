@@ -20,7 +20,7 @@
         </button>
 
         <div class="org">
-            HMTI
+            Nama Organisasi
         </div>
 
     </div>

@@ -1,14 +1,14 @@
 <div class="sidebar">
 
     <div class="logo">
-        EMS
+        sme
     </div>
 
     <a href="dashboard.php" class="menu active">
         Dashboard
     </a>
 
-    <a href="event.php" class="menu">
+    <a href="event.php" class="menu active">
         Event
     </a>
 
