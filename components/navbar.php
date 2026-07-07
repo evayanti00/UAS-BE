@@ -25,12 +25,12 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown">
             <img src="../assets/img/profile.png" alt="Profile" width="30" height="30" class="rounded-circle me-2">
-            RADE
+            <?php echo htmlspecialchars($_SESSION['username'] ?? 'User'); ?>
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
             <li><a class="dropdown-item" href="setting.php">Settingan</a></li>
             <!-- Logout diarahkan ke logout.php -->
-            <li><a class="dropdown-item text-danger" href="auth/logout.php">Logout</a></li>
+            <li><a class="dropdown-item text-danger" href="../auth/logout.php">Logout</a></li>
           </ul>
         </li>
       </ul>
