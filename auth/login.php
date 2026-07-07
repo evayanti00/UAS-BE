@@ -1,3 +1,29 @@
+<?php
+session_start();
+
+// Jika sudah login, redirect ke dashboard
+if (isset($_SESSION['username'])) {
+    header("Location: ../dashboard-panitia/dashboard.php");
+    exit;
+}
+
+// Proses login
+$error = '';
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+    
+    // Username & password hardcoded untuk testing (tanpa database)
+    // Nanti bisa ganti dengan query database
+    if ($username === 'admin' && $password === 'admin123') {
+        $_SESSION['username'] = $username;
+        header("Location: ../dashboard-panitia/dashboard.php");
+        exit;
+    } else {
+        $error = 'Username atau password salah!';
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -45,6 +71,13 @@
                         </p>
                     </div>
 
+                    <?php if ($error): ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <?php echo $error; ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php endif; ?>
+
                     <form action="" method="POST">
 
                         <div class="mb-3">
@@ -57,6 +90,7 @@
                                 name="username"
                                 class="form-control"
                                 placeholder="Masukkan username"
+                                value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>"
                                 required>
                         </div>
 
@@ -98,5 +132,6 @@
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

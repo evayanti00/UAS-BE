@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<?php include '../components/sidebar.php'; ?>
+<?php include '../components/navbar.php'; ?>
 
 <div class="main-content">
 
