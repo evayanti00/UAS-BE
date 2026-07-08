@@ -35,12 +35,9 @@ $msg    = $_GET['msg'] ?? '';
 <?php include '../components/navbar.php'; ?>
 
 <div class="container-fluid" style="padding:80px 24px 24px;">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <div class="page-title mb-0">
-      <h2>&#128197; Kelola Event</h2>
-      <p>Buat, edit, dan hapus event Anda.</p>
-    </div>
-    <a href="tambah-event.php" class="btn btn-primary fw-semibold">&#43; Tambah Event</a>
+  <div class="page-title mb-4">
+    <h2>📅 Kelola Event</h2>
+    <p>Buat, edit, dan hapus event Anda.</p>
   </div>
 
   <?php if ($msg === 'tambah'): ?>
