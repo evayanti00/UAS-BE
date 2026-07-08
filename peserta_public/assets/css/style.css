@@ -1,88 +1,127 @@
-/* =========================
-   HERO
-========================= */
-
-.hero {
-    background: linear-gradient(135deg, #0d6efd, #0a58ca);
-    color: white;
-    padding: 80px 0;
+body{
+    background:#f5f7fb;
+    font-family:'Segoe UI',sans-serif;
 }
 
-/* =========================
-   NAVBAR
-========================= */
+/* Navbar */
 
-.navbar {
-    padding: 15px 0;
+.navbar{
+    padding:15px 0;
 }
 
-.navbar-brand {
-    font-size: 30px;
-    font-weight: bold;
-    color: #2563eb !important;
+.navbar-brand{
+    font-size:30px;
+    font-weight:bold;
 }
 
-.navbar-nav {
-    gap: 30px;
+.nav-link{
+    margin:0 10px;
+    transition:.3s;
 }
 
-.navbar-nav .nav-link {
-    font-size: 18px;
-    font-weight: 500;
-    color: #333 !important;
-    transition: .3s;
+.nav-link:hover{
+    color:#0d6efd;
 }
 
-.navbar-nav .nav-link:hover,
-.navbar-nav .nav-link.active {
-    color: #2563eb !important;
+/* Hero */
+
+.hero{
+
+    min-height:70vh;
+
+    background:
+    linear-gradient(rgba(13,110,253,.75),
+    rgba(13,110,253,.75)),
+    url("../images/bg.jpg");
+
+    background-size:cover;
+    background-position:center;
+
 }
 
-/* =========================
-   CARD EVENT
-========================= */
+.hero h1{
 
-.card {
-    transition: .3s;
-    border: none;
+    font-size:55px;
+    font-weight:bold;
+
 }
 
-.card:hover {
-    transform: translateY(-6px);
+.hero p{
+
+    max-width:700px;
+    margin:auto;
+
 }
 
-.event-img {
-    height: 350px;
-    object-fit: contain;
-    background: #f8f9fa;
+/* Card */
+
+.event-card{
+    width:100%;
+
+    border:none;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    transition:.4s;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
 }
 
-/* =========================
-   DETAIL EVENT
-========================= */
+.event-card:hover{
 
-.carousel-item img {
-    height: 450px;
-    object-fit: contain;
-    background: #f8f9fa;
+    transform:translateY(-10px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.18);
+
 }
 
-.carousel-control-prev,
-.carousel-control-next {
-    width: 12%;
+.event-img{
+
+    height:240px;
+
+    object-fit:cover;
+
+    transition:.5s;
+
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background: black;
-    border-radius: 50%;
-    padding: 20px;
+.event-card:hover .event-img{
+
+    transform:scale(1.08);
+
 }
 
-/* =========================
-   FOOTER
-========================= */
+.card-body{
 
-footer {
-    margin-top: 50px;
+    padding:25px;
+
+}
+
+.btn-primary{
+
+    border-radius:30px;
+
+    padding:10px;
+
+    font-weight:bold;
+
+}
+
+.badge{
+
+    border-radius:30px;
+
+    padding:8px 15px;
+
+}
+
+/* Footer */
+
+footer{
+
+    margin-top:70px;
+
 }
