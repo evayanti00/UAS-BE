@@ -9,18 +9,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        body{
-            background-color:#f8f9fa;
+        body {
+            background: linear-gradient(135deg, #1d4ed8 0%, #7c3aed 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 40px 0;
         }
-
-        .register-card{
-            margin-top:60px;
-        }
-
-        .brand-title{
-            color:#2563EB;
-            font-weight:bold;
-        }
+        .register-card { border-radius: 20px; border: none; }
+        .brand-title { color: #1d4ed8; font-weight: 800; font-size: 2rem; }
+        .form-control { border-radius: 10px; padding: .65rem 1rem; }
+        .btn-primary { border-radius: 10px; padding: .65rem; font-weight: 600; }
     </style>
 </head>
 <body>

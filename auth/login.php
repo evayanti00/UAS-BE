@@ -52,40 +52,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        body{
-            background-color:#f8f9fa;
+        body {
+            background: linear-gradient(135deg, #1d4ed8 0%, #7c3aed 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
-
-        .login-card{
-            margin-top:80px;
-        }
-
-        .brand-title{
-            color:#2563EB;
-            font-weight:bold;
-        }
+        .login-card { border-radius: 20px; border: none; }
+        .brand-title { color: #1d4ed8; font-weight: 800; font-size: 2rem; }
+        .brand-sub { color: #6b7280; font-size: .9rem; }
+        .form-control { border-radius: 10px; padding: .65rem 1rem; }
+        .btn-primary { border-radius: 10px; padding: .65rem; font-weight: 600; }
     </style>
 </head>
 <body>
 
 <div class="container">
-
     <div class="row justify-content-center">
-
-        <div class="col-md-5">
+        <div class="col-md-5 col-lg-4">
 
             <div class="card shadow login-card">
 
                 <div class="card-body p-4">
 
                     <div class="text-center mb-4">
-                        <h2 class="brand-title">
-                            SME
-                        </h2>
-
-                        <p class="text-muted">
-                            Login Penyelenggara Event
-                        </p>
+                        <div class="mb-2" style="font-size:2.5rem;">&#127775;</div>
+                        <h2 class="brand-title">SME</h2>
+                        <p class="brand-sub">Sistem Manajemen Event<br>Login Penyelenggara</p>
                     </div>
 
                     <?php if ($error): ?>
