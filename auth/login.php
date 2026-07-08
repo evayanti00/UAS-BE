@@ -76,9 +76,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="card-body p-4">
 
                     <div class="text-center mb-4">
-                        <div class="mb-2" style="font-size:2.5rem;">&#127775;</div>
+                        <div class="mb-2" style="font-size:2.5rem;"><a href="../" style="text-decoration: none;">&#127775;</a></div>
                         <h2 class="brand-title">SME</h2>
                         <p class="brand-sub">Sistem Manajemen Event<br>Login Penyelenggara</p>
+                        <div class="text-danger">
+                            <?php if ($error): ?>
+                                <?= htmlspecialchars($error) ?>
+                            <?php endif; ?>
+                        </div>
                     </div>
 
                     <form action="" method="POST">

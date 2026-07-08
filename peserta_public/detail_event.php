@@ -1,53 +1,27 @@
-<?php
+﻿<?php
+require_once __DIR__ . '/../classes/events.php';
 
-$id = $_GET['id'] ?? 1;
+$eventsModel = new Events();
+$id_event = (int)($_GET['id'] ?? 0);
+$event = $id_event > 0 ? $eventsModel->getDataById($id_event) : null;
 
-if ($id == 1) {
+function e($value) {
+    return htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8');
+}
 
-    $judul = "Lomba Foto Nasional 2026";
+function formatTanggalEvent($tanggal) {
+    return date('d F Y, H:i', strtotime($tanggal));
+}
 
-    $gambar1 = "assets/images/himatography_1.jpeg";
-    $gambar2 = "assets/images/himatography_2.jpeg";
-    $gambar3 = "assets/images/himatography_3.jpeg";
-    $gambar4 = "assets/images/himatography_4.jpeg";
+function posterEvent($poster) {
+    if (!empty($poster)) {
+        return '../uploads/posters/' . rawurlencode($poster);
+    }
 
-    $pendaftaran = "12 April - 15 Juli 2026";
-    $biaya = "Rp 50.000";
-    $hadiah = "Jutaan Rupiah + E-Sertifikat";
-    $peserta = "Terbuka Untuk Umum";
+    return 'assets/images/himatography_1.jpeg';
+}
 
-    $cp1 = "Ria : +62 812349878911";
-    $cp2 = "Diah : +62 812345678911";
-
-    $instagram = "himatography_";
-    $website = "https://www.himatography.com";
-
-    $deskripsi = "Lomba Foto Nasional hadir kembali! Cerita Nusantara Vol. 5 mengajak kamu mengabadikan keindahan dan kisah Indonesia lewat lensa.";
-
-} elseif ($id == 2) {
-
-    $judul = "GETEKSI VOL. 3";
-
-    $gambar1 = "assets/images/geteksi_1.jpeg";
-    $gambar2 = "assets/images/geteksi_2.jpeg";
-    $gambar3 = null;
-    $gambar4 = null;
-
-    $pendaftaran = "07 Juni 2026";
-    $biaya = "Rp 40.000 (Online) / Rp 45.000 (Offline)";
-    $hadiah = "SKKM, Knowledge, Relation, E-Certificate";
-    $peserta = "Mahasiswa dan Pelajar";
-
-    $cp1 = "Ria : +62 8128344577593";
-    $cp2 = "Diah : +62 812345678911";
-
-    $instagram = "@himaprodi_ti";
-    $website = "";
-
-    $deskripsi = "GETEKSI Vol. 3 menghadirkan Seminar Nasional, Esai Competition, dan Poster Competition untuk pelajar dan mahasiswa.";
-
-} 
-
+$isAktif = $event ? strtotime($event['tanggal_event']) > time() : false;
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +29,7 @@ if ($id == 1) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Event</title>
+    <title><?php echo $event ? e($event['nama_event']) : 'Detail Event'; ?></title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -66,103 +40,84 @@ if ($id == 1) {
 
 <div class="container my-5">
 
-    <div class="row">
+    <?php if (!$event): ?>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="alert alert-warning text-center">
+                    Event tidak ditemukan.
+                </div>
+                <div class="text-center">
+                    <a href="index.php#event" class="btn btn-primary">Kembali ke Daftar Event</a>
+                </div>
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="row g-4">
 
-        <div class="col-md-5">
+            <div class="col-md-5">
 
-            <div id="eventCarousel" class="carousel slide shadow rounded">
-
-                <div class="carousel-inner">
-
-                    <div class="carousel-item active">
-                        <img src="<?php echo $gambar1; ?>"
-                             class="d-block w-100 rounded"
-                             alt="Event 1">
-                    </div>
-
-                    <div class="carousel-item">
-                        <img src="<?php echo $gambar2; ?>"
-                             class="d-block w-100 rounded"
-                             alt="Event 2">
-                    </div>
-
-                    <div class="carousel-item">
-                        <img src="<?php echo $gambar3; ?>"
-                             class="d-block w-100 rounded"
-                             alt="Event 3">
-                    </div>
-
-                     <div class="carousel-item">
-                        <img src="<?php echo $gambar4; ?>"
-                             class="d-block w-100 rounded"
-                             alt="Event 4">
-                    </div>
-
+                <div class="shadow rounded overflow-hidden">
+                    <img src="<?php echo e(posterEvent($event['poster_event'])); ?>"
+                         class="d-block w-100"
+                         alt="<?php echo e($event['nama_event']); ?>">
                 </div>
 
-                <button class="carousel-control-prev"
-                        type="button"
-                        data-bs-target="#eventCarousel"
-                        data-bs-slide="prev">
+            </div>
 
-                    <span class="carousel-control-prev-icon"></span>
+            <div class="col-md-7">
 
-                </button>
+                <span class="badge bg-primary mb-3">
+                    <?php echo e($event['kategori']); ?>
+                </span>
 
-                <button class="carousel-control-next"
-                        type="button"
-                        data-bs-target="#eventCarousel"
-                        data-bs-slide="next">
+                <h2 class="fw-bold">
+                    <?php echo e($event['nama_event']); ?>
+                </h2>
 
-                    <span class="carousel-control-next-icon"></span>
+                <hr>
 
-                </button>
+                <table class="table table-borderless align-middle">
+                    <tr>
+                        <th width="180">Tanggal Event</th>
+                        <td><?php echo e(formatTanggalEvent($event['tanggal_event'])); ?></td>
+                    </tr>
+                    <tr>
+                        <th>Kuota</th>
+                        <td><?php echo e($event['kuota']); ?> Orang</td>
+                    </tr>
+                    <tr>
+                        <th>Penyelenggara</th>
+                        <td><?php echo e($event['nama_organisasi']); ?></td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td>
+                            <span class="badge <?php echo $isAktif ? 'bg-success' : 'bg-secondary'; ?>">
+                                <?php echo $isAktif ? 'Aktif' : 'Selesai'; ?>
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+
+                <h5 class="mt-4">Deskripsi Event</h5>
+
+                <p class="text-muted">
+                    <?php echo nl2br(e($event['deskripsi'] ?? '-')); ?>
+                </p>
+
+                <div class="d-flex gap-2 mt-4">
+                    <a href="daftar_event.php?id=<?php echo e($event['id_event']); ?>" class="btn btn-success">
+                        Daftar Sekarang
+                    </a>
+                    <a href="index.php#event" class="btn btn-outline-secondary">
+                        Kembali
+                    </a>
+                </div>
 
             </div>
 
         </div>
-
-        <div class="col-md-7">
-
-            <h2 class="fw-bold">
-                <?php echo $judul; ?>
-            </h2>
-
-            <hr>
-
-            <p>📅 Pendaftaran : <?php echo $pendaftaran; ?></p>
-            <p>💰 Biaya : <?php echo $biaya; ?></p>
-            <p>🏆 Hadiah : <?php echo $hadiah; ?></p>
-            <p>🌍 Peserta : <?php echo $peserta; ?></p>
-
-            <p><strong>Contact Person :</strong></p>
-
-            <p><?php echo $cp1; ?></p>
-            <p><?php echo $cp2; ?></p>
-
-            <p><strong>More Info :</strong></p>
-
-            <p>Instagram : <?php echo $instagram; ?></p>
-
-            <p>
-                <a href="<?php echo $website; ?>" target="_blank">
-                    <?php echo $website; ?>
-                </a>
-            </p>
-
-            <h5>Deskripsi Event</h5>
-
-            <p>
-                <?php echo $deskripsi; ?>
-            </p>
-
-            <a href="daftar_event.php" class="btn btn-success">
-                Daftar Sekarang
-            </a>
-
-        </div>
-
-    </div>
+    <?php endif; ?>
 
 </div>
 

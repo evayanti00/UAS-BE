@@ -7,10 +7,11 @@ class Pendaftaran extends Database {
     public function putData($data) {
         $nik_nim  = $data['nik_nim'];
         $id_event = (int)$data['id_event'];
+        $status_kehadiran = 'hadir';
 
-        $tmplq = "INSERT INTO {$this->tbl} (nik_nim, id_event) VALUES (?, ?)";
+        $tmplq = "INSERT INTO {$this->tbl} (nik_nim, id_event, status_kehadiran) VALUES (?, ?, ?)";
         $stmt = $this->cn->prepare($tmplq);
-        $stmt->bind_param("si", $nik_nim, $id_event);
+        $stmt->bind_param("sis", $nik_nim, $id_event, $status_kehadiran);
         return $stmt->execute();
     }
 
